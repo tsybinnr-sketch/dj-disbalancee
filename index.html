@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DJ Niksty — забронировать сет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1A1A1D;
+    --bg-soft: #232327;
+    --bg-card: #2A2A2F;
+    --bg-elev: #34343A;
+    --white: #FFFFFF;
+    --off-white: #F2F2EF;
+    --dim: #A8A8A6;
+    --muted: #6B6B68;
+    --line: #3F3F45;
+    --bordeaux: #8B1A2B;
+    --bordeaux-bright: #B5253A;
+    --bordeaux-soft: #6E1422;
+    --gold: #D4AF37;
+    --gold-soft: #2F2A1C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--off-white);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 48px 0 100px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, var(--bordeaux) 0%, transparent 65%);
+    opacity: 0.55;
+    z-index: 0;
+    filter: blur(20px);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -8%;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, var(--gold) 0%, transparent 65%);
+    opacity: 0.1;
+    z-index: 0;
+    filter: blur(30px);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 100px;
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-transform: lowercase;
+  }
+
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bordeaux-bright);
+    animation: pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 12px var(--bordeaux-bright);
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-weight: 500;
+  }
+
+  .nav-links a {
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 36px;
+    color: var(--off-white);
+  }
+
+  .hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(44px, 7.5vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -2.5px;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+
+  .hero h1 .accent {
+    color: var(--bordeaux-bright);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero p.lead {
+    font-size: clamp(17px, 1.8vw, 20px);
+    color: var(--dim);
+    max-width: 620px;
+    margin-bottom: 44px;
+    line-height: 1.55;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    background: var(--bordeaux);
+    color: var(--white);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(139, 26, 43, 0.35);
+  }
+
+  .hero-cta:hover {
+    background: var(--bordeaux-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(181, 37, 58, 0.5);
+  }
+
+  .hero-cta .arrow {
+    transition: transform 0.2s;
+  }
+
+  .hero-cta:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ===== BOOKING ===== */
+  .booking {
+    padding: 60px 0 120px;
+    position: relative;
+  }
+
+  .booking::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    right: -5%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, var(--bordeaux-soft) 0%, transparent 60%);
+    opacity: 0.5;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  .booking-header {
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+
+  .booking-header h2 .acc {
+    color: var(--bordeaux-bright);
+  }
+
+  .booking-header p {
+    font-size: 17px;
+    color: var(--dim);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 36px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    color: var(--off-white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--bordeaux-bright);
+    border-radius: 50%;
+  }
+
+  /* Calendar */
+  .calendar {
+    margin-bottom: 32px;
+  }
+
+  .calendar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .calendar-month {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    text-transform: capitalize;
+    color: var(--white);
+  }
+
+  .cal-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .cal-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--off-white);
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .cal-btn:hover {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--white);
+  }
+
+  .cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .cal-weekday {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    padding: 4px 0;
+  }
+
+  .cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+    color: var(--off-white);
+  }
+
+  .cal-day:not(.disabled):not(.empty):hover {
+    background: var(--bordeaux-soft);
+    border-color: var(--bordeaux-bright);
+    color: var(--white);
+  }
+
+  .cal-day.empty {
+    cursor: default;
+  }
+
+  .cal-day.disabled {
+    color: var(--muted);
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .cal-day.today {
+    background: var(--gold-soft);
+    color: var(--gold);
+    font-weight: 700;
+    border-color: var(--gold);
+  }
+
+  .cal-day.booked {
+    position: relative;
+    background: var(--bg-elev);
+    color: var(--bordeaux-bright);
+  }
+
+  .cal-day.booked::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--bordeaux-bright);
+  }
+
+  .cal-day.booked:hover {
+    background: var(--bordeaux-soft) !important;
+  }
+
+  .cal-legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot-today { background: var(--gold); }
+  .dot-booked { background: var(--bordeaux-bright); }
+
+  .cal-day.selected {
+    background: var(--bordeaux);
+    color: var(--white);
+    font-weight: 700;
+    border-color: var(--bordeaux-bright);
+    box-shadow: 0 4px 12px rgba(139, 26, 43, 0.4);
+  }
+
+  .selected-date-display {
+    background: var(--bordeaux-soft);
+    border: 1px solid var(--bordeaux);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+    margin-top: 16px;
+  }
+
+  .selected-date-display.empty {
+    background: var(--bg-elev);
+    border-color: var(--line);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* Time range */
+  .hours-block {
+    margin-bottom: 32px;
+  }
+
+  .time-range {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .time-field {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 18px;
+    transition: border-color 0.15s;
+  }
+
+  .time-field:focus-within {
+    border-color: var(--bordeaux-bright);
+  }
+
+  .time-field-label {
+    font-size: 11px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .time-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -1px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 18px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23A8A8A6' d='M6 8L0 0h12z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+
+  .time-select option {
+    background: var(--bg-card);
+    color: var(--white);
+    font-size: 15px;
+  }
+
+  .time-arrow {
+    color: var(--dim);
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 16px;
+  }
+
+  .duration-info {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--dim);
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .duration-info span {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .duration-info.error {
+    color: var(--bordeaux-bright);
+    border-color: var(--bordeaux);
+  }
+
+  .duration-info.error span {
+    color: var(--bordeaux-bright);
+  }
+
+  /* Equipment */
+  .equip-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .equip-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .equip-option:hover {
+    border-color: var(--bordeaux);
+  }
+
+  .equip-option.active {
+    background: var(--bordeaux-soft);
+    border-color: var(--bordeaux-bright);
+  }
+
+  .equip-option input {
+    display: none;
+  }
+
+  .equip-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--line);
+    background: var(--bg-card);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.15s;
+  }
+
+  .equip-option.active .equip-check {
+    background: var(--bordeaux-bright);
+    border-color: var(--bordeaux-bright);
+  }
+
+  .equip-option.active .equip-check::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .equip-info {
+    flex: 1;
+  }
+
+  .equip-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 3px;
+    color: var(--white);
+  }
+
+  .equip-desc {
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+
+  .equip-price {
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+    color: var(--off-white);
+  }
+
+  .equip-option.active .equip-price {
+    color: var(--white);
+  }
+
+  /* ===== PRICE PANEL ===== */
+  .price-panel {
+    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-card) 100%);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 36px;
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+  }
+
+  .price-summary {
+    margin: 24px 0;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .price-row:last-child { border-bottom: none; }
+
+  .price-row .label {
+    color: var(--dim);
+  }
+
+  .price-row .label.muted {
+    color: var(--muted);
+  }
+
+  .price-row .val {
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .price-row .val.muted {
+    color: var(--muted);
+  }
+
+  .price-total {
+    background: var(--bordeaux);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 26px 24px;
+    margin: 24px 0;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(139, 26, 43, 0.3);
+  }
+
+  .total-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    opacity: 0.85;
+  }
+
+  .total-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--white);
+  }
+
+  .prepay-note {
+    font-size: 12px;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .prepay-amount {
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .book-btn {
+    width: 100%;
+    padding: 20px;
+    background: var(--white);
+    color: var(--bg);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .book-btn:hover:not(:disabled) {
+    background: var(--off-white);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(255, 255, 255, 0.15);
+  }
+
+  .book-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--bg-card);
+    color: var(--off-white);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .modal-close:hover {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--white);
+  }
+
+  .modal h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .modal h3 .acc {
+    color: var(--bordeaux-bright);
+  }
+
+  .modal-sub {
+    color: var(--dim);
+    margin-bottom: 26px;
+    font-size: 15px;
+  }
+
+  .booking-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .summary-row .label { color: var(--dim); }
+  .summary-row .val { font-weight: 700; color: var(--white); }
+
+  .summary-total {
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .summary-total .label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--dim);
+  }
+
+  .summary-total .val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--white);
+  }
+
+  .payment-block {
+    background: var(--bordeaux-soft);
+    border: 1px solid var(--bordeaux);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+  }
+
+  .payment-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    color: var(--white);
+  }
+
+  .payment-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .payment-detail .key {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .payment-detail .value {
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  .copy-btn {
+    background: var(--white);
+    color: var(--bg);
+    border: none;
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .copy-btn:hover { background: var(--off-white); }
+  .copy-btn.copied { background: var(--gold); }
+
+  .contact-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .contact-btn {
+    padding: 16px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: var(--white);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--bg-card);
+  }
+
+  .contact-btn:hover {
+    border-color: var(--bordeaux-bright);
+    transform: translateY(-2px);
+    background: var(--bordeaux-soft);
+  }
+
+  .modal-note {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 36px 0 50px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+
+  footer .heart {
+    color: var(--bordeaux-bright);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav { margin-bottom: 56px; }
+    .booking-grid { grid-template-columns: 1fr; }
+    .price-panel { position: static; }
+    .hero { padding-bottom: 70px; }
+    .booking { padding: 40px 0 80px; }
+  }
+
+  @media (max-width: 500px) {
+    .modal { padding: 28px 24px; }
+    .booking-card, .price-panel { padding: 24px; }
+    .contact-buttons { grid-template-columns: 1fr; }
+    .total-amount { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <nav class="nav">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        dj niksty
+      </div>
+      <div class="nav-links">
+        <a href="#booking">Бронь</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>Доступен для бронирования</span>
+      </div>
+
+      <h1>
+        Святой <span class="accent">драмн бэйс!</span><br>
+        Вы пришли забронировать<br>
+        меня на вечеринку?<br>
+        Листайте ниже
+      </h1>
+
+      <p class="lead">
+        В репертуаре нишевый ремикс Агутина и самый стильный тек-хаус. Сеты собираю индивидуально под мероприятие.
+      </p>
+
+      <a href="#booking" class="hero-cta">
+        Забронировать дату
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section class="booking" id="booking">
+    <div class="booking-header">
+      <h2>Забронируй <span class="acc">свой вечер</span></h2>
+      <p>Выберите дату, длительность и нужно ли оборудование — стоимость рассчитается автоматически</p>
+    </div>
+
+    <div class="booking-grid">
+
+      <!-- Левая колонка: форма -->
+      <div class="booking-card">
+
+        <!-- Календарь -->
+        <div class="calendar">
+          <div class="section-label">Выберите дату</div>
+
+          <div class="calendar-head">
+            <div class="calendar-month" id="cal-month"></div>
+            <div class="cal-nav">
+              <button class="cal-btn" id="cal-prev" aria-label="Назад">←</button>
+              <button class="cal-btn" id="cal-next" aria-label="Вперёд">→</button>
+            </div>
+          </div>
+
+          <div class="cal-weekdays">
+            <div class="cal-weekday">пн</div>
+            <div class="cal-weekday">вт</div>
+            <div class="cal-weekday">ср</div>
+            <div class="cal-weekday">чт</div>
+            <div class="cal-weekday">пт</div>
+            <div class="cal-weekday">сб</div>
+            <div class="cal-weekday">вс</div>
+          </div>
+
+          <div class="cal-days" id="cal-days"></div>
+
+          <div class="cal-legend">
+            <span class="legend-item"><span class="legend-dot dot-today"></span> сегодня</span>
+            <span class="legend-item"><span class="legend-dot dot-booked"></span> уже есть бронь</span>
+          </div>
+
+          <div class="selected-date-display empty" id="selected-date">
+            Выберите дату из календаря
+          </div>
+        </div>
+
+        <!-- Время сета -->
+        <div class="hours-block">
+          <div class="section-label">Время сета</div>
+          <div class="time-range">
+            <div class="time-field">
+              <div class="time-field-label">С</div>
+              <select id="start-hour" class="time-select"></select>
+            </div>
+            <div class="time-arrow">→</div>
+            <div class="time-field">
+              <div class="time-field-label">До</div>
+              <select id="end-hour" class="time-select"></select>
+            </div>
+          </div>
+          <div class="duration-info">
+            Длительность: <span id="duration-text">4 часа</span>
+          </div>
+        </div>
+
+        <!-- Оборудование -->
+        <div>
+          <div class="section-label">Оборудование</div>
+          <div class="equip-options">
+            <label class="equip-option" data-key="own">
+              <input type="radio" name="equip" value="own" checked>
+              <div class="equip-check"></div>
+              <div class="equip-info">
+                <div class="equip-name">У меня своё оборудование</div>
+                <div class="equip-desc">Площадка предоставляет звук</div>
+              </div>
+              <div class="equip-price">+ 0 ₽</div>
+            </label>
+
+            <label class="equip-option" data-key="base">
+              <input type="radio" name="equip" value="base">
+              <div class="equip-check"></div>
+              <div class="equip-info">
+                <div class="equip-name">Базовый комплект</div>
+                <div class="equip-desc">2 колонки + стойки + пульт + микрофон</div>
+              </div>
+              <div class="equip-price">+ 8 000 ₽</div>
+            </label>
+
+            <label class="equip-option" data-key="full">
+              <input type="radio" name="equip" value="full">
+              <div class="equip-check"></div>
+              <div class="equip-info">
+                <div class="equip-name">Расширенный комплект</div>
+                <div class="equip-desc">Базовый + 2 доп. колонки во второе помещение</div>
+              </div>
+              <div class="equip-price">+ 11 000 ₽</div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Правая колонка: цена -->
+      <div class="price-panel">
+        <div class="section-label">Ваш счёт</div>
+
+        <div class="price-summary">
+          <div class="price-row">
+            <span class="label" id="lbl-date">Дата не выбрана</span>
+            <span class="val" id="val-date">—</span>
+          </div>
+          <div class="price-row">
+            <span class="label" id="lbl-work">Работа DJ (<span id="work-hours">4</span> ч × 3 000 ₽)</span>
+            <span class="val" id="val-work">12 000 ₽</span>
+          </div>
+          <div class="price-row" id="row-equip">
+            <span class="label">Оборудование</span>
+            <span class="val">— ₽</span>
+          </div>
+        </div>
+
+        <div class="price-total">
+          <div class="total-label">Итого к оплате</div>
+          <div class="total-amount"><span id="total-amount">12 000</span> ₽</div>
+          <div class="prepay-note">
+            Предоплата 30% — <span class="prepay-amount" id="prepay-amount">3 600 ₽</span>
+          </div>
+        </div>
+
+        <button class="book-btn" id="book-btn" disabled>
+          Забронировать
+          <span>→</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Made with <span class="heart">♥</span> by dj niksty · 2026
+  </footer>
+
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Закрыть">✕</button>
+
+    <h3>Бронирование <span class="acc">почти готово</span></h3>
+    <p class="modal-sub">Переведите предоплату и напишите мне — подтвержу дату в течение часа.</p>
+
+    <div class="booking-summary">
+      <div class="summary-row">
+        <span class="label">Дата</span>
+        <span class="val" id="m-date">—</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Длительность</span>
+        <span class="val" id="m-hours">—</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Оборудование</span>
+        <span class="val" id="m-equip">—</span>
+      </div>
+      <div class="summary-total">
+        <span class="label">Предоплата 30%</span>
+        <span class="val"><span id="m-prepay">—</span> ₽</span>
+      </div>
+    </div>
+
+    <div class="payment-block">
+      <div class="payment-title">Реквизиты для перевода</div>
+      <div class="payment-detail">
+        <span class="key">Номер</span>
+        <span style="display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
+          <span class="value">+7 (967) 303-10-43</span>
+          <button class="copy-btn" data-copy="+79673031043">Копир.</button>
+        </span>
+      </div>
+      <div class="payment-detail">
+        <span class="key">Получатель</span>
+        <span class="value">Никита Ц.</span>
+      </div>
+      <div class="payment-detail">
+        <span class="key">Банки</span>
+        <span class="value">Т-Банк / Сбербанк</span>
+      </div>
+    </div>
+
+    <div class="contact-buttons">
+      <a class="contact-btn" id="tg-link" href="#" target="_blank">
+        💬 Telegram
+      </a>
+      <a class="contact-btn" id="wa-link" href="#" target="_blank">
+        📱 WhatsApp
+      </a>
+    </div>
+
+    <p class="modal-note">
+      После перевода отправьте чек в Telegram или WhatsApp — забронирую дату за вами.
+    </p>
+  </div>
+</div>
+
+<script>
+  // ===== STATE =====
+  const state = {
+    startHour: 20,
+    endHour: 24,
+    equip: 'own',
+    date: null,
+    calMonth: new Date().getMonth(),
+    calYear: new Date().getFullYear(),
+    bookings: [],  // загружается с сервера
+  };
+
+  const HOURLY = 3000;
+  const PREPAY_PCT = 0.3;
+  const EQUIP_PRICES = { own: 0, base: 8000, full: 11000 };
+  const EQUIP_NAMES = {
+    own: 'Своё / площадки',
+    base: 'Базовый комплект',
+    full: 'Расширенный комплект',
+  };
+
+  // ===== BACKEND (Cloudflare Worker) =====
+  const WORKER_URL = 'https://dj-tg-bot.tsybinnr.workers.dev';
+
+  async function loadBookings() {
+    try {
+      const res = await fetch(`${WORKER_URL}/bookings`);
+      const data = await res.json();
+      state.bookings = data.bookings || [];
+      renderCalendar();
+    } catch (err) {
+      console.warn('Failed to load bookings:', err);
+    }
+  }
+
+  async function submitBooking(payload) {
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!data.ok) console.warn('Booking failed:', data);
+      // обновим список броней после успешной заявки
+      loadBookings();
+    } catch (err) {
+      console.warn('Submit error:', err);
+    }
+  }
+
+  const MONTHS = [
+    'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
+  ];
+  const MONTHS_OF = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+  ];
+
+  // ===== FORMAT =====
+  const fmt = (n) => n.toLocaleString('ru-RU');
+
+  function hoursWord(h) {
+    if (h % 10 === 1 && h % 100 !== 11) return 'час';
+    if ([2, 3, 4].includes(h % 10) && ![12, 13, 14].includes(h % 100)) return 'часа';
+    return 'часов';
+  }
+
+  function pad2(n) {
+    return n < 10 ? '0' + n : '' + n;
+  }
+
+  function formatHour(h) {
+    // 24 -> 00 (полночь следующего дня визуально)
+    const hour = h % 24;
+    return `${pad2(hour)}:00`;
+  }
+
+  function dateKey(d) {
+    // 'YYYY-MM-DD'
+    return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+  }
+
+  function getDuration() {
+    // если начало < конца — простая разница
+    // если начало >= конца — играем через полночь (например с 22 до 02)
+    let diff = state.endHour - state.startHour;
+    if (diff <= 0) diff += 24;
+    return diff;
+  }
+
+  // ===== CALENDAR =====
+  function renderCalendar() {
+    const monthEl = document.getElementById('cal-month');
+    const daysEl = document.getElementById('cal-days');
+
+    monthEl.textContent = `${MONTHS[state.calMonth]} ${state.calYear}`;
+
+    daysEl.innerHTML = '';
+
+    const firstDay = new Date(state.calYear, state.calMonth, 1);
+    const lastDay = new Date(state.calYear, state.calMonth + 1, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let startWeekday = firstDay.getDay() - 1;
+    if (startWeekday < 0) startWeekday = 6;
+
+    for (let i = 0; i < startWeekday; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      daysEl.appendChild(empty);
+    }
+
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      const dayEl = document.createElement('div');
+      dayEl.className = 'cal-day';
+      dayEl.textContent = d;
+
+      const thisDate = new Date(state.calYear, state.calMonth, d);
+
+      if (thisDate < today) {
+        dayEl.classList.add('disabled');
+      } else {
+        if (thisDate.getTime() === today.getTime()) {
+          dayEl.classList.add('today');
+        }
+        // подсветка занятых дат
+        const key = dateKey(thisDate);
+        const isBooked = state.bookings.some(b => b.date === key);
+        if (isBooked) {
+          dayEl.classList.add('booked');
+          dayEl.title = 'На эту дату уже есть бронь — лучше уточнить';
+        }
+        if (
+          state.date &&
+          state.date.getDate() === d &&
+          state.date.getMonth() === state.calMonth &&
+          state.date.getFullYear() === state.calYear
+        ) {
+          dayEl.classList.add('selected');
+        }
+        dayEl.addEventListener('click', () => {
+          state.date = thisDate;
+          renderCalendar();
+          updatePrice();
+        });
+      }
+
+      daysEl.appendChild(dayEl);
+    }
+  }
+
+  document.getElementById('cal-prev').addEventListener('click', () => {
+    state.calMonth--;
+    if (state.calMonth < 0) {
+      state.calMonth = 11;
+      state.calYear--;
+    }
+    renderCalendar();
+  });
+
+  document.getElementById('cal-next').addEventListener('click', () => {
+    state.calMonth++;
+    if (state.calMonth > 11) {
+      state.calMonth = 0;
+      state.calYear++;
+    }
+    renderCalendar();
+  });
+
+  // ===== TIME SELECTS =====
+  function populateTimeSelects() {
+    const startSel = document.getElementById('start-hour');
+    const endSel = document.getElementById('end-hour');
+
+    // Старт: 12:00 — 23:00
+    for (let h = 12; h <= 23; h++) {
+      const opt = document.createElement('option');
+      opt.value = h;
+      opt.textContent = formatHour(h);
+      if (h === state.startHour) opt.selected = true;
+      startSel.appendChild(opt);
+    }
+
+    // Окончание: 16:00 — 23:00, 00:00 (=24), 01:00 — 06:00 (=25-30)
+    const endHours = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+    endHours.forEach(h => {
+      const opt = document.createElement('option');
+      opt.value = h;
+      opt.textContent = formatHour(h);
+      if (h === state.endHour) opt.selected = true;
+      endSel.appendChild(opt);
+    });
+
+    startSel.addEventListener('change', () => {
+      state.startHour = parseInt(startSel.value, 10);
+      updateDurationInfo();
+      updatePrice();
+    });
+
+    endSel.addEventListener('change', () => {
+      state.endHour = parseInt(endSel.value, 10);
+      updateDurationInfo();
+      updatePrice();
+    });
+
+    updateDurationInfo();
+  }
+
+  function updateDurationInfo() {
+    const dur = getDuration();
+    const infoEl = document.querySelector('.duration-info');
+    const textEl = document.getElementById('duration-text');
+
+    if (dur < 2) {
+      infoEl.classList.add('error');
+      textEl.textContent = `${dur} ${hoursWord(dur)} — минимум 2 часа`;
+    } else if (dur > 12) {
+      infoEl.classList.add('error');
+      textEl.textContent = `${dur} ${hoursWord(dur)} — максимум 12 часов`;
+    } else {
+      infoEl.classList.remove('error');
+      textEl.textContent = `${dur} ${hoursWord(dur)}`;
+    }
+  }
+
+  // ===== EQUIPMENT =====
+  document.querySelectorAll('.equip-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.equip-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      opt.querySelector('input').checked = true;
+      state.equip = opt.dataset.key;
+      updatePrice();
+    });
+  });
+
+  document.querySelector('.equip-option[data-key="own"]').classList.add('active');
+
+  // ===== PRICE CALCULATION =====
+  function updatePrice() {
+    const duration = getDuration();
+    const validDuration = duration >= 2 && duration <= 12;
+
+    const workCost = duration * HOURLY;
+    const equipCost = EQUIP_PRICES[state.equip];
+    const total = workCost + equipCost;
+    const prepay = Math.round(total * PREPAY_PCT);
+
+    document.getElementById('work-hours').textContent = duration;
+    document.getElementById('lbl-work').innerHTML =
+      `Работа DJ (<span id="work-hours">${duration}</span> ч × 3 000 ₽)`;
+    document.getElementById('val-work').textContent = `${fmt(workCost)} ₽`;
+
+    const rowEquip = document.getElementById('row-equip');
+    if (state.equip === 'own') {
+      rowEquip.innerHTML = `
+        <span class="label muted">Оборудование своё</span>
+        <span class="val muted">— ₽</span>
+      `;
+    } else {
+      rowEquip.innerHTML = `
+        <span class="label">${EQUIP_NAMES[state.equip]}</span>
+        <span class="val">+ ${fmt(equipCost)} ₽</span>
+      `;
+    }
+
+    const lblDate = document.getElementById('lbl-date');
+    const valDate = document.getElementById('val-date');
+    if (state.date) {
+      lblDate.textContent = 'Дата';
+      valDate.textContent = `${state.date.getDate()} ${MONTHS_OF[state.date.getMonth()]}, ${formatHour(state.startHour)}–${formatHour(state.endHour)}`;
+
+      const sd = document.getElementById('selected-date');
+      sd.classList.remove('empty');
+      sd.textContent = `${state.date.getDate()} ${MONTHS_OF[state.date.getMonth()]} ${state.date.getFullYear()}`;
+    } else {
+      lblDate.textContent = 'Дата не выбрана';
+      valDate.textContent = '—';
+    }
+
+    document.getElementById('total-amount').textContent = fmt(total);
+    document.getElementById('prepay-amount').textContent = `${fmt(prepay)} ₽`;
+
+    document.getElementById('book-btn').disabled = !state.date || !validDuration;
+  }
+
+  // ===== MODAL =====
+  const modal = document.getElementById('modal');
+
+  document.getElementById('book-btn').addEventListener('click', () => {
+    if (!state.date) return;
+    openModal();
+  });
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  function openModal() {
+    const duration = getDuration();
+    const workCost = duration * HOURLY;
+    const equipCost = EQUIP_PRICES[state.equip];
+    const total = workCost + equipCost;
+    const prepay = Math.round(total * PREPAY_PCT);
+
+    const dateStr = `${state.date.getDate()} ${MONTHS_OF[state.date.getMonth()]} ${state.date.getFullYear()}`;
+    const timeStr = `${formatHour(state.startHour)}–${formatHour(state.endHour)}`;
+
+    document.getElementById('m-date').textContent = `${dateStr}, ${timeStr}`;
+    document.getElementById('m-hours').textContent = `${duration} ${hoursWord(duration)}`;
+    document.getElementById('m-equip').textContent = EQUIP_NAMES[state.equip];
+    document.getElementById('m-prepay').textContent = fmt(prepay);
+
+    // Сообщение для клиента (в его мессенджер)
+    const clientMessage = `Здравствуйте! Хочу забронировать DJ-сет:
+📅 Дата: ${dateStr}
+⏰ Время: ${timeStr} (${duration} ${hoursWord(duration)})
+🎛 Оборудование: ${EQUIP_NAMES[state.equip]}
+💰 Сумма: ${fmt(total)} ₽ (предоплата ${fmt(prepay)} ₽)`;
+
+    const encoded = encodeURIComponent(clientMessage);
+    document.getElementById('tg-link').href = `https://t.me/disbalancee?text=${encoded}`;
+    document.getElementById('wa-link').href = `https://wa.me/79673031043?text=${encoded}`;
+
+    // Сообщение для DJ (в Telegram бот)
+    const adminMessage =
+      `🎉 *НОВАЯ ЗАЯВКА*\n\n` +
+      `📅 *Дата:* ${dateStr}\n` +
+      `⏰ *Время:* ${timeStr}\n` +
+      `⏱ *Длительность:* ${duration} ${hoursWord(duration)}\n` +
+      `🎛 *Оборудование:* ${EQUIP_NAMES[state.equip]}\n\n` +
+      `💰 *Сумма:* ${fmt(total)} ₽\n` +
+      `💳 *Предоплата 30%:* ${fmt(prepay)} ₽\n\n` +
+      `_Жди перевод и сообщение от клиента!_`;
+
+    // Отправляем заявку: сохраняем в Worker + уведомление в Telegram
+    submitBooking({
+      date: dateKey(state.date),
+      startHour: state.startHour,
+      endHour: state.endHour,
+      message: adminMessage,
+    });
+
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // ===== COPY BUTTONS =====
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      btn.textContent = 'Готово ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Копир.';
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+
+  // ===== INIT =====
+  renderCalendar();
+  populateTimeSelects();
+  updatePrice();
+  loadBookings();
+</script>
+
+</body>
+</html>
