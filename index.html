@@ -1202,6 +1202,42 @@
     full: 'Расширенный комплект',
   };
 
+  // ===== TELEGRAM NOTIFICATIONS =====
+  const TG_BOT_TOKEN = '8858810932:AAH8PaLKfgYLzYbrx6ClrYvtTLPCur7dL9E';
+  const TG_CHAT_ID = '356715953';
+
+  async function sendTelegramNotification(data) {
+    const message =
+      `🎉 *НОВАЯ ЗАЯВКА*\n\n` +
+      `📅 *Дата:* ${data.dateStr}\n` +
+      `⏱ *Длительность:* ${data.hours} ${hoursWord(data.hours)}\n` +
+      `🎛 *Оборудование:* ${data.equipName}\n\n` +
+      `💰 *Сумма:* ${fmt(data.total)} ₽\n` +
+      `💳 *Предоплата 30%:* ${fmt(data.prepay)} ₽\n\n` +
+      `_Жди перевод и сообщение от клиента!_`;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TG_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown',
+          }),
+        }
+      );
+      const result = await response.json();
+      if (!result.ok) {
+        console.warn('Telegram error:', result);
+      }
+    } catch (err) {
+      console.warn('Telegram notification failed:', err);
+    }
+  }
+
   const MONTHS = [
     'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
     'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
@@ -1410,9 +1446,17 @@
 💰 Сумма: ${fmt(total)} ₽ (предоплата ${fmt(prepay)} ₽)`;
 
     const encoded = encodeURIComponent(messageText);
-    // TODO: замени your_username на свой ник в Telegram
     document.getElementById('tg-link').href = `https://t.me/disbalancee?text=${encoded}`;
     document.getElementById('wa-link').href = `https://wa.me/79673031043?text=${encoded}`;
+
+    // Отправляем уведомление в Telegram бот
+    sendTelegramNotification({
+      dateStr,
+      hours: state.hours,
+      equipName: EQUIP_NAMES[state.equip],
+      total,
+      prepay,
+    });
 
     modal.classList.add('show');
     document.body.style.overflow = 'hidden';
